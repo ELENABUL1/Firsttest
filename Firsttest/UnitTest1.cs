@@ -9,6 +9,8 @@ namespace Firsttest
         [TestMethod]
         public void TestMethod1()
         {
+
+            привет!
         }
     }
 }
