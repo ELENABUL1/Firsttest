@@ -2,14 +2,14 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using NUnitFramework;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Suport.UI;
+using OpenQA.Selenium.Support.UI;
 
-namespace Firsttest
+namespace UnitTest1
 {
-    [TestFuxture]
+    [TestFixture]
     public class GroupCreationTests
     {
         private IWebDriver driver;
@@ -21,7 +21,7 @@ namespace Firsttest
 
         public void SetupTest()
         {
-            driver = new firefoxDriver();
+            driver = new FirefoxDriver();
             baseURL = "http://localhost";
             verificationErrors = new StringBuilder();
         }
@@ -45,10 +45,10 @@ namespace Firsttest
         public void GroupCreationTest()
         {
             driver.Navigate().GoToUrl(baseURL + "/addressbook/");
-            driver.FindElement(By.name("user")).Clear();
-            driver.FindElement(By.name("user")).SendKeys("admin");
-            driver.FindElement(By.name("pass")).Clear();
-            driver.FindElement(By.name("pass")).SendKeys("secret");
+            driver.FindElement(By.Name("user")).Clear();
+            driver.FindElement(By.Name("user")).SendKeys("admin");
+            driver.FindElement(By.Name("pass")).Clear();
+            driver.FindElement(By.Name("pass")).SendKeys("secret");
             driver.FindElement(By.CssSelector("input[type=\"submit\"]")).Click();
             driver.FindElement(By.LinkText("groups")).Click();
             driver.FindElement(By.Name("new")).Click();
@@ -78,7 +78,7 @@ namespace Firsttest
         {
             try
             {
-                driver.SwichTo().Alert();
+                driver.SwitchTo().Alert();
                 return true;
             }
             catch (NoAlertPresentException)
