@@ -44,23 +44,60 @@ namespace UnitTest1
         [Test]
         public void GroupCreationTest()
         {
-            driver.Navigate().GoToUrl(baseURL + "/addressbook/");
-            driver.FindElement(By.Name("user")).Clear();
-            driver.FindElement(By.Name("user")).SendKeys("admin");
-            driver.FindElement(By.Name("pass")).Clear();
-            driver.FindElement(By.Name("pass")).SendKeys("secret");
-            driver.FindElement(By.CssSelector("input[type=\"submit\"]")).Click();
-            driver.FindElement(By.LinkText("groups")).Click();
-            driver.FindElement(By.Name("new")).Click();
+            OpenHomePage();
+            Login();
+            GoToGroupsPage();
+            UnitNewGroupCreation();
+            FillGroupForm();
+            SubmitGroupCreation();
+            ReturnToGroupsPage();
+        }
+
+        private void ReturnToGroupsPage()
+        {
+            driver.FindElement(By.LinkText("groupe page")).Click();
+        }
+
+        private void SubmitGroupCreation()
+        {
+            driver.FindElement(By.Name("submit")).Click();
+        }
+
+        private void FillGroupForm()
+        {
             driver.FindElement(By.Name("groupe_name")).Clear();
             driver.FindElement(By.Name("groupe_name")).SendKeys("q");
             driver.FindElement(By.Name("groupe_header")).Clear();
             driver.FindElement(By.Name("groupe_header")).SendKeys("qw");
             driver.FindElement(By.Name("groupe_footer")).Clear();
             driver.FindElement(By.Name("groupe_footer")).SendKeys("wq");
-            driver.FindElement(By.Name("submit")).Click();
-            driver.FindElement(By.LinkText("groupe page")).Click();
         }
+
+        private void UnitNewGroupCreation()
+        {
+            driver.FindElement(By.Name("new")).Click();
+        }
+
+        private void GoToGroupsPage()
+        {
+            driver.FindElement(By.LinkText("groups")).Click();
+        }
+
+        private void Login()
+        {
+            driver.FindElement(By.Name("user")).Clear();
+            driver.FindElement(By.Name("user")).SendKeys("admin");
+            driver.FindElement(By.Name("pass")).Clear();
+            driver.FindElement(By.Name("pass")).SendKeys("secret");
+            driver.FindElement(By.CssSelector("input[type=\"submit\"]")).Click();
+        }
+
+        private void OpenHomePage()
+        {
+
+            driver.Navigate().GoToUrl(baseURL + "/addressbook/");
+        }
+
         private bool IsElementPresent(By by)
         {
             try
